@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function Card({data}) {
+export default function Card({data}) { 
   return (
     <div className='w-64 h-60 flex gap-3 flex-col'>
       <div className='relative'>
@@ -9,7 +9,7 @@ export default function Card({data}) {
                 {data.videoDuration}
             </span>
             <Link to = {`/watch/${data.videoId}`}>
-            <img src={data.videoThumbnail} alt='Thumbnail'className='h-44 w-72'/>
+            <img src={data.videoThumbnail} alt='Thumbnail'className='w-full h-full'/>
             </Link>
         </div>
         <div className='flex gap-2'>

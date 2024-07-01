@@ -35,7 +35,7 @@ export default function Home() {
           >
               <div className='grid gap-y-14 gap-x-8 grid-cols-4 p-8'>
                 {videos.map((item) => {
-                  return <Card data={item} key={item.videoId}/>
+                  return <Card data={item} key={item.videoId+Math.random()*100}/>
                 })}
               </div>
           </InfiniteScroll>

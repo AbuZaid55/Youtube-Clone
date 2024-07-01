@@ -49,7 +49,7 @@ try{
         videoId : item.id.videoId,
         videoTitle: item.snippet.title,
         videoDescription:item.snippet.description,
-        videoThumbnail:item.snippet.thumbnails.medium.url,
+        videoThumbnail:item.snippet.thumbnails.high.url,
         videoLink:`https://www.youtube.com/watch?v=${item.id.videoId}`,
         videoDuration:parseVideoDuration(
           videosData[index].contentDetails.duration

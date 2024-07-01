@@ -18,6 +18,8 @@ export default function Watch() {
     (state) => state.youtubeApp.recommendedVideo
   );
 
+  console.log(recommendedVideo)
+
   useEffect(() => {
     if (id) {
       dispatch(getVideoDetails(id));

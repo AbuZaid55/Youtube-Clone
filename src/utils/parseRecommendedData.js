@@ -45,7 +45,6 @@ try{
     const {image:channelImage
     } = parsedChannelsData.find((data)=>data.id === item.snippet.channelId);
     if(channelImage){
-      console.log(channelImage,item.snippet.channelId,"+++++++++++")
       parseData.push({
         videoId : videoIds[index],
         videoTitle: item.snippet.title,
