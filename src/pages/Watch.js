@@ -9,7 +9,7 @@ export default function Watch() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  
+
   const currentPlaying = useAppSelector(
     (state) => state.youtubeApp.currentPlaying
   );
@@ -31,6 +31,7 @@ export default function Watch() {
   useEffect(() => {
     if (currentPlaying && id) dispatch(getRecommendedVideos(id));
   }, [currentPlaying, dispatch, id]);
+  console.log(currentPlaying)
 
   return (
     <>
@@ -39,20 +40,14 @@ export default function Watch() {
           <div >
             <Navbar />
           </div>
-          <div>
-            <div>
-              <div>
-                <div>
-                  <iframe src={`https://www.youtube.com/embed/${id}?autoplay=1`}
-                  frameBorder="0"
-                  width="800"
-                  height="502"
-                  allowFullScreen
-                  title="Youtube Player">
-                  </iframe>
-                </div>
+          <div className="w-full flex">
+            <div className="video-container w-[70%] h-[70vh] relative">
+              <div className="absolute bg-cover w-full h-full hidden" id="thumbnail" style={{backgroundImage: `url('${currentPlaying.videoThumbnail}')`,backgroundRepeat:"no-repeat",backgroundPosition:"center"}}></div>
+              <div className="iframe-container w-full h-full" id="iframe-container">
+                <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${id}?autoplay=1`} frameborder="0" width="800" height="502" allowfullscreen title="YouTube Player" id="youtube-iframe"></iframe>
               </div>
             </div>
+            <div className="min-h-[100vh] w-[30%] bg-white"></div>
           </div>
         </div>
       )}

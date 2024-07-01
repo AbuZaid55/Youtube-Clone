@@ -48,7 +48,7 @@ const navigate = useNavigate();
                 {videos.map((item) => {
                   return (
                     <div className='my-5'>
-                  <SearchCard data={item} key={item.videoId}/>
+                  <SearchCard data={item} key={item.videoId+Math.random()*100}/>
                   </div>
                   )
                 })}

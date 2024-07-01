@@ -28,7 +28,6 @@ const statistics = item.statistics;
 const channelImage = channelResponse.data.items[0].snippet.thumbnails.default.url;
 const subscriberCount = channelResponse.data.items[0].statistics.subscriberCount;
 
-
 return {
     videoId : id,
         videoTitle: snippet.title,
@@ -36,6 +35,7 @@ return {
         videoViews:convertRawtoString(
           statistics.viewCount
         ),
+        videoThumbnail:snippet.thumbnails.high.url,
         videoLikes:convertRawtoString(
           statistics.likeCount
         ),
