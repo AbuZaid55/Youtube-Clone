@@ -1,81 +1,84 @@
-import React from 'react'
-import{
-    MdHomeFilled,
-    MdOutlineSlowMotionVideo,
-    MdSubscriptions,
-    MdOutlineVideoLibrary,
-    MdHistory,
-    MdOutlineWatchLater,
-} from 'react-icons/md';
+import React from "react";
+import {
+  MdHomeFilled,
+  MdOutlineSlowMotionVideo,
+  MdSubscriptions,
+  MdOutlineVideoLibrary,
+  MdHistory,
+  MdOutlineWatchLater,
+} from "react-icons/md";
 
-import {LuThumbsUp} from 'react-icons/lu';
-
+import { LuThumbsUp } from "react-icons/lu";
 
 export default function Sidebar() {
-    const mainLinks = [
-        {
-            icon: <MdHomeFilled className='text-xl'/>,
-            name: 'Home'
-        },
-        {
-            icon:<MdOutlineSlowMotionVideo className='text-xl'/>,
-            name:'Shorts'
-        },
-        {
-            icon:<MdSubscriptions className='text-xl'/>,
-            name:'Subscriptions'
-        }
-    ];
+  const mainLinks = [
+    {
+      icon: <MdHomeFilled className="text-xl" />,
+      name: "Home",
+    },
+    {
+      icon: <MdOutlineSlowMotionVideo className="text-xl" />,
+      name: "Shorts",
+    },
+    {
+      icon: <MdSubscriptions className="text-xl" />,
+      name: "Subscriptions",
+    },
+  ];
 
-    const otherLinks = [
-        {
-            icon:<MdOutlineVideoLibrary className='text-xl'/>,
-            name:'Library'
-        },
-        {
-            icon:<MdHistory className='text-xl'/>,
-            name:"History"
-        },
-        {
-            icon:<MdOutlineWatchLater className='text-xl'/>,
-            name :"Watch Later"
-        },
-        {
-            icon:<LuThumbsUp className='text-xl'/>,
-            name :"Liked Video"
-        }
-    ]
-
+  const otherLinks = [
+    {
+      icon: <MdOutlineVideoLibrary className="text-xl" />,
+      name: "Library",
+    },
+    {
+      icon: <MdHistory className="text-xl" />,
+      name: "History",
+    },
+    {
+      icon: <MdOutlineWatchLater className="text-xl" />,
+      name: "Watch Later",
+    },
+    {
+      icon: <LuThumbsUp className="text-xl" />,
+      name: "Liked Video",
+    },
+  ];
 
   return (
-    <div className='w-2/12 bg-[#212121] pr-5 overflow-auto sidebar pl-2 '>
-      <ul className='flex flex-col border-b-2 border-gray-700'>
-        {mainLinks.map(
-            ({icon,name}) => {
-            return(
-                <li key={name} className={` cursor-pointer pl-4 py-3 my-1 hover:bg-zinc-700 ${name === "Home" ?"bg-zinc-600" : " "} rounded-xl`}>
-                    <a href='#' className='flex items-center gap-5'> 
-                    {icon}
-                    <span className='text-sm tracking-wider'>{name}</span>
-                    </a>
-                </li>
-            )}
-        )}
+    <div className="w-2/12 bg-[#212121] pr-5 overflow-auto sidebar pl-2 ">
+      <ul className="flex flex-col border-b-2 border-gray-700">
+        {mainLinks.map(({ icon, name }) => {
+          return (
+            <li
+              key={name}
+              className={` cursor-pointer pl-4 py-3 my-1 hover:bg-zinc-700 ${
+                name === "Home" ? "bg-zinc-600" : " "
+              } rounded-xl`}
+            >
+              <p href="#" className="flex items-center gap-5">
+                {icon}
+                <span className="text-sm tracking-wider">{name}</span>
+              </p>
+            </li>
+          );
+        })}
       </ul>
-      <ul className='flex flex-col border-b-2 border-gray-700'>
-        {otherLinks.map(
-            ({icon,name}) => {
-            return(
-                <li key={name} className={`cursor-pointer pl-4 my-1 py-3 hover:bg-zinc-600 rounded-xl`}>
-                    <a href='#' className='flex items-center gap-5'> 
-                    {icon}
-                    <span className='text-sm tracking-wider'>{name}</span>
-                    </a>
-                </li>
-            )
-            }
-        )}
+      <ul className="flex flex-col border-b-2 border-gray-700">
+        {otherLinks.map(({ icon, name }) => {
+          return (
+            <li
+              key={name}
+              className={`cursor-pointer pl-4 my-1 py-3 hover:bg-zinc-600 rounded-xl`} 
+            >
+              <p href="#" className="flex items-center gap-5">
+                {icon}
+                <span className="text-sm tracking-wider">{name}</span>
+              </p>
+            </li>
+          );
+        })}
       </ul>
     </div>
-  )
+  );
 }

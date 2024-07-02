@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { RxHamburgerMenu  } from "react-icons/rx";
+import { RxHamburgerMenu } from "react-icons/rx";
 import { AiOutlineSearch } from "react-icons/ai";
 import { FaMicrophone } from "react-icons/fa";
 import { RiVideoAddLine } from "react-icons/ri";
@@ -7,7 +7,10 @@ import { BsBell } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getSearchPageVideos } from "../store/reducers/getSearchPageVideos";
 import { useAppDispatch, useAppSelector } from "../hooks/useApp";
-import { changeSearchTerm, clearVideos } from "../features/youtube/youtubeSlice";
+import {
+  changeSearchTerm,
+  clearVideos,
+} from "../features/youtube/youtubeSlice";
 
 export default function Navbar() {
   const location = useLocation();
@@ -23,25 +26,24 @@ export default function Navbar() {
     }
   };
 
-  useEffect(()=>{
-    if(location.pathname==="/"){
-      dispatch(changeSearchTerm(''))
+  useEffect(() => {
+    if (location.pathname === "/") {
+      dispatch(changeSearchTerm(""));
     }
-  },[location])
-
+  }, [location]);
 
   return (
     <div className="flex justify-between items-center px-8 h-full  bg-[#212121] opacity-95 sticky top-0 z-50">
       <div className="flex gap-6 items-center text-2xl">
         <div className="cursor-pointer">
-          <RxHamburgerMenu  />
+          <RxHamburgerMenu />
         </div>
-          <Link to="/">
-        <div className="flex gap-1 items-center justify-center">
-          <img className="w-8 h-8" src="/youtube.png"/>
-          <span className="text-2xl">Youtube</span>
-        </div>
-          </Link>
+        <Link to="/">
+          <div className="flex gap-1 items-center justify-center">
+            <img className="w-8 h-8" alt="profile" src="/youtube.png" />
+            <span className="text-2xl">Youtube</span>
+          </div>
+        </Link>
       </div>
       <div className="flex items-center justify-center gap-5">
         <form
@@ -57,7 +59,7 @@ export default function Navbar() {
                 placeholder="Search"
                 className="w-96 bg-zinc-900 focus:outline-none border-none"
                 value={searchTerm}
-                onChange={e=>dispatch(changeSearchTerm(e.target.value))}
+                onChange={(e) => dispatch(changeSearchTerm(e.target.value))}
               />
             </div>
             <button className="h-10 w-16 flex items-center justify-center bg-zinc-700 rounded-r-3xl border-2 border-gray-700 border-r-0">

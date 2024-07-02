@@ -18,9 +18,7 @@ export default function RecommendedCard({ data }) {
         </div>
         <div className="flex gap-1 flex-col w-[60%]">
           <h3 className="max-w-2xl">
-            <p className="line-clamp-2">
-              {data.videoTitle}
-            </p>
+            <p className="line-clamp-2">{data.videoTitle}</p>
           </h3>
           <div className="text-xs text-gray-400">
             <div>
@@ -33,9 +31,7 @@ export default function RecommendedCard({ data }) {
             </div>
           </div>
           <div className="min-w-fit">
-            <p
-              className="flex items-center gap-2 text-xs text-gray-400"
-            >
+            <p className="flex items-center gap-2 text-xs text-gray-400">
               <img
                 src={data.channelInfo.image}
                 alt="channel"
