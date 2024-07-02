@@ -15,6 +15,7 @@ const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const videos = useAppSelector((state)=> state.youtubeApp.videos);
   const searchTerm = useAppSelector((state)=> state.youtubeApp.searchTerm);
+  const nextPageToken=useAppSelector((state)=>state.youtubeApp.nextPageToken)
 
   useEffect(()=>{
     dispatch(clearVideos());
@@ -39,7 +40,7 @@ const navigate = useNavigate();
           <InfiniteScroll 
           dataLength={videos.length} 
           next={()=> dispatch(getSearchPageVideos(true))}
-          hasMore={videos.length < 500}
+          hasMore={nextPageToken!==undefined}
           loader={<Spinner/>}
           height={600}
           >

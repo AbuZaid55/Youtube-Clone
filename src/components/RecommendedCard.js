@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function RecommendedCard({ data }) {
   return (
     <Link to={`/watch/${data.videoId}`}>
-      <div className="flex h-28 gap-3 bg-red-700 mb-2">
+      <div className="flex h-28 gap-3 mb-2">
         <div className="relative w-[40%] overflow-hidden ">
           <span className="absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10">
             {data.videoDuration}
@@ -32,7 +32,7 @@ export default function RecommendedCard({ data }) {
               </div>
             </div>
           </div>
-          <div className="min-w-fit my-2">
+          <div className="min-w-fit">
             <p
               className="flex items-center gap-2 text-xs text-gray-400"
             >

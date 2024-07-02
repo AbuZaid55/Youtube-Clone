@@ -21,6 +21,7 @@ export default function Watch() {
   const recommendedVideo = useAppSelector(
     (state) => state.youtubeApp.recommendedVideo
   );
+  const nextPageToken=useAppSelector((state)=>state.youtubeApp.nextPageToken)
 
   useEffect(() => {
     setVideoPlaying(false)
@@ -49,7 +50,9 @@ export default function Watch() {
                 {
                   !videoPlaying? (
                 
-                <div onClick={()=>{setVideoPlaying(true)}} className="absolute bg-cover w-full h-full cursor-pointer" id="thumbnail" style={{ backgroundImage: `url('${currentPlaying.videoThumbnail}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
+                <div onClick={()=>{setVideoPlaying(true)}} className="absolute flex items-center justify-center bg-cover w-full h-full cursor-pointer" id="thumbnail" style={{ backgroundImage: `url('${currentPlaying.videoThumbnail}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}>
+                  <img className="w-16 h-16" src="/youtube.png"/>
+                </div>
                   ):(
                 <div className="iframe-container w-full h-full" id="iframe-container">
                   <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${id}?autoplay=1`} frameBorder="0" width="800" height="502" allowFullScreen title="YouTube Player" id="youtube-iframe"></iframe>
@@ -64,10 +67,10 @@ export default function Watch() {
                     <div className='flex flex-col gap-3 px-2 border-l-2 border-gray-800'>
                       <InfiniteScroll
                         dataLength={recommendedVideo.length}
-                        next={() => dispatch(getRecommendedVideos({isNext:false,videoId:id}))}
-                        hasMore={recommendedVideo.length < 500}
+                        next={() => dispatch(getRecommendedVideos({isNext:true,videoId:id}))}
+                        hasMore={nextPageToken!==undefined}
                         loader={<Spinner />}
-                        height={660}
+                        height={600}
                       >
 
                         {recommendedVideo.map((item) => {

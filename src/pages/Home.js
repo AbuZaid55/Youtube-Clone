@@ -11,6 +11,7 @@ export default function Home() {
 
   const dispatch = useAppDispatch();
   const videos = useAppSelector((state)=> state.youtubeApp.videos);
+  const nextPageToken=useAppSelector((state)=>state.youtubeApp.nextPageToken)
 
   useEffect(()=>{
     dispatch(getHomePageVideos(false));
@@ -30,9 +31,9 @@ export default function Home() {
           <InfiniteScroll 
           dataLength={videos.length} 
           next={()=> dispatch(getHomePageVideos(true))}
-          hasMore={videos.length<500}
+          hasMore={nextPageToken!==undefined}
           loader={<Spinner/>}
-          height={650}
+          height={600}
           >
               <div className='grid gap-8 grid-cols-4 py-4 pr-6 pl-2 bg-[#212121] w-full'>
                 {videos.map((item) => {

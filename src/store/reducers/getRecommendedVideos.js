@@ -18,6 +18,7 @@ export const getRecommendedVideos = createAsyncThunk(
         const items = response.data.items;
         const parsedData = await parseRecommendedData(items,videoId);
 
+
         let videos = []
         let videosIds=[]
         parsedData.forEach((vid)=>{
