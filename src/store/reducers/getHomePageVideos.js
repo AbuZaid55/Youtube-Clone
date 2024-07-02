@@ -20,6 +20,7 @@ export const getHomePageVideos = createAsyncThunk(
             part: "snippet",
             type: "video",
             pageToken: isNext ? nextPageTokenFromState : "",
+            videoDuration:"medium"
           },
         });
         const items = response.data.items;

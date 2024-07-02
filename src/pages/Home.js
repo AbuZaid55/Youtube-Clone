@@ -19,11 +19,12 @@ export default function Home() {
 
   return (
     <div className='max-h-screen overflow-hidden'>
-      <div style={{height:"7.5vh"}}>
+      <div style={{height:"9vh"}}>
       <Navbar/>
       </div>
-      <div className='flex' style={{height:"92.5vh"}}>
+      <div className='flex' style={{height:"91vh"}}>
       <Sidebar/>
+      <div className='w-10/12'>
       {
         videos.length ? (
           <InfiniteScroll 
@@ -33,7 +34,7 @@ export default function Home() {
           loader={<Spinner/>}
           height={650}
           >
-              <div className='grid gap-y-14 gap-x-8 grid-cols-4 p-8'>
+              <div className='grid gap-8 grid-cols-4 py-4 pr-6 pl-2 bg-[#212121] w-full'>
                 {videos.map((item) => {
                   return <Card data={item} key={item.videoId+Math.random()*100}/>
                 })}
@@ -43,6 +44,7 @@ export default function Home() {
           <Spinner/>
         )
       }
+      </div>
       </div>
     </div>
   )

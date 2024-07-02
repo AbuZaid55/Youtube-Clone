@@ -2,31 +2,30 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Card({data}) { 
-  return (
+  return (<>
             <Link to = {`/watch/${data.videoId}`}>
-    <div className='w-64 h-60 flex gap-3 flex-col'>
-      <div className='relative'>
-            <span className='absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10'>
+    <div className='w-64 flex gap-3 flex-col overflow-hidden'>
+      <div className='relative z-10'>
+            <span className='absolute bottom-8 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10'>
                 {data.videoDuration}
             </span>
-            <img src={data.videoThumbnail} alt='Thumbnail'className='w-full h-full'/>
+            <img src={data.videoThumbnail} alt='Thumbnail'className='w-full h-54 -mt-6'/>
         </div>
-        <div className='flex gap-2'>
+        <div className='flex gap-2 -mt-9 py-2 z-20 bg-[#212121]'>
             <div className='min-w-fit'>
-                <a href='#'><img src={data.channelInfo.image} alt="channel image" className='h-9 w-9 rounded-full'/>
-                </a>
+                <img src={data.channelInfo.image} alt="channel image" className='h-8 w-8 rounded-full'/>
             </div>
             <div>
                 <h3>
-                    <a href='#' className='line-clamp-2'>
+                    <p className='line-clamp-2'>
                         {data.videoTitle} 
-                    </a>
+                    </p>
                 </h3>
                 <div className='text-sm text-gray-400'>
                     <div>
-                        <a href='#' className='hover:text-white'>
+                        <p className='hover:text-white'>
                             {data.channelInfo.name}
-                        </a>
+                        </p>
                     </div>
                     <div>
                         <span className="after:content-['•'] after:mx-1">
@@ -41,5 +40,5 @@ export default function Card({data}) {
         </div>
       </div>
             </Link>
-  )
+            </>)
 }

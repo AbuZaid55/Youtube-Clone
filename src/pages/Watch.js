@@ -39,11 +39,11 @@ export default function Watch() {
   return (
     <>
       {currentPlaying && currentPlaying?.videoId === id && (
-        <div className="max-h-screen overflow-hidden">
-          <div >
+        <div className="max-h-screen overflow-hidden bg-[#212121]">
+          <div style={{height:"9vh"}}>
             <Navbar />
           </div>
-          <div className="w-full flex">
+          <div className="w-full flex" style={{height:"91vh"}}>
             <div className="w-[70%]">
               <div className="video-container w-full h-[70vh] relative">
                 {
@@ -58,9 +58,10 @@ export default function Watch() {
               </div>
             </div>
             
+                <div className="w-[30%] h-[70vh]">
                 {
                   recommendedVideo.length ? (
-                    <div className='w-[30%] h-[100vh]  flex flex-col gap-5 p-4 border-l-2 border-gray-800'>
+                    <div className='flex flex-col gap-3 px-2 border-l-2 border-gray-800'>
                       <InfiniteScroll
                         dataLength={recommendedVideo.length}
                         next={() => dispatch(getRecommendedVideos({isNext:false,videoId:id}))}
@@ -71,7 +72,7 @@ export default function Watch() {
 
                         {recommendedVideo.map((item) => {
                           return (
-                            <div className='my-5' key={item.videoId + Math.random() * 100}>
+                            <div key={item.videoId + Math.random() * 100}>
                               <RecommendedCard data={item} />
                             </div>
                           )
@@ -83,6 +84,7 @@ export default function Watch() {
                     <Spinner />
                   )
                 }
+                </div>
           </div>
         </div>
       )}

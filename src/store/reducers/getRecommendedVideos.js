@@ -14,7 +14,7 @@ export const getRecommendedVideos = createAsyncThunk(
         } = getState();
         const response = await axios.get(`https://youtube.googleapis.com/youtube/v3/activities?&key=${API_KEY}&channelId=${channelId}&part=snippet,contentDetails&maxResults=20&type=videoId=${videoId}&${
             isNext ? `pageToken=${nextPageTokenFromState}` : ""
-          }`);
+          }&videoDuration=medium`);
         const items = response.data.items;
         const parsedData = await parseRecommendedData(items,videoId);
 

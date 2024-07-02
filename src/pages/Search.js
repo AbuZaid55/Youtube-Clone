@@ -26,15 +26,16 @@ const navigate = useNavigate();
 
 
   return (
-    <div className='max-h-screen overflow-hidden'>
-      <div style={{height:"7.5vh"}}>
+    <div className='max-h-screen overflow-hidden bg-[#212121]'>
+      <div style={{height:"9vh"}}>
       <Navbar/>
       </div>
-      <div className='flex' style={{height:"92.5vh"}}>
+      <div className='flex' style={{height:"91vh"}}>
       <Sidebar/>
+      <div className='w-10/12'>
       {
         videos.length ? (
-            <div className='py-8 pl-8 flex flex-col gap-5 w-full'>
+            <div className='pl-4 flex flex-col gap-5 w-full'>
           <InfiniteScroll 
           dataLength={videos.length} 
           next={()=> dispatch(getSearchPageVideos(true))}
@@ -57,6 +58,7 @@ const navigate = useNavigate();
           <Spinner/>
         )
       }
+      </div>
       </div>
     </div>
   )

@@ -48,12 +48,12 @@ export default function Sidebar() {
 
 
   return (
-    <div className='w-2/12 bg-[#212121] pr-5 overflow-auto pb-8 sidebar'>
+    <div className='w-2/12 bg-[#212121] pr-5 overflow-auto sidebar pl-2 '>
       <ul className='flex flex-col border-b-2 border-gray-700'>
         {mainLinks.map(
             ({icon,name}) => {
             return(
-                <li key={name} className={`pl-6 py-3 hover:bg-zinc-700 ${name === "Home" ?"bg-zinc-600" : " "} rounded-xl`}>
+                <li key={name} className={` cursor-pointer pl-4 py-3 my-1 hover:bg-zinc-700 ${name === "Home" ?"bg-zinc-600" : " "} rounded-xl`}>
                     <a href='#' className='flex items-center gap-5'> 
                     {icon}
                     <span className='text-sm tracking-wider'>{name}</span>
@@ -62,11 +62,11 @@ export default function Sidebar() {
             )}
         )}
       </ul>
-      <ul className='flex flex-col border-b-2 border-gray-800'>
+      <ul className='flex flex-col border-b-2 border-gray-700'>
         {otherLinks.map(
             ({icon,name}) => {
             return(
-                <li key={name} className={`pl-6 py-3 hover:bg-zinc-600 `}>
+                <li key={name} className={`cursor-pointer pl-4 my-1 py-3 hover:bg-zinc-600 rounded-xl`}>
                     <a href='#' className='flex items-center gap-5'> 
                     {icon}
                     <span className='text-sm tracking-wider'>{name}</span>

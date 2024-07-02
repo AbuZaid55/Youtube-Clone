@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default function RecommendedCard({ data }) {
   return (
     <Link to={`/watch/${data.videoId}`}>
-      <div className="flex gap-3 ">
-        <div className="relative h-28 w-[40%]">
+      <div className="flex h-28 gap-3 bg-red-700 mb-2">
+        <div className="relative w-[40%] overflow-hidden ">
           <span className="absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10">
             {data.videoDuration}
           </span>
@@ -13,14 +13,14 @@ export default function RecommendedCard({ data }) {
           <img
             src={data.videoThumbnail}
             alt="Thumbnail"
-            className="h-full w-full"
+            className="h-32 w-full"
           />
         </div>
         <div className="flex gap-1 flex-col w-[60%]">
           <h3 className="max-w-2xl">
-            <a href="#" className="line-clamp-2">
+            <p className="line-clamp-2">
               {data.videoTitle}
-            </a>
+            </p>
           </h3>
           <div className="text-xs text-gray-400">
             <div>
@@ -33,8 +33,7 @@ export default function RecommendedCard({ data }) {
             </div>
           </div>
           <div className="min-w-fit my-2">
-            <a
-              href="#"
+            <p
               className="flex items-center gap-2 text-xs text-gray-400"
             >
               <img
@@ -43,7 +42,7 @@ export default function RecommendedCard({ data }) {
                 className="h-9 w-9 rounded-full"
               />
               <span>{data.channelInfo.name}</span>
-            </a>
+            </p>
           </div>
         </div>
       </div>
