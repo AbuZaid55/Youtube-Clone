@@ -2,10 +2,8 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import {useAppDispatch,useAppSelector} from "../hooks/useApp";
-import { getHomePageVideos } from '../store/reducers/getHomePageVideos';
 import Spinner from '../components/Spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import Card from '../components/Card';
 import { useNavigate } from 'react-router-dom';
 import { clearVideos } from '../features/youtube/youtubeSlice';
 import { getSearchPageVideos } from '../store/reducers/getSearchPageVideos';
@@ -47,8 +45,8 @@ const navigate = useNavigate();
               
                 {videos.map((item) => {
                   return (
-                    <div className='my-5'>
-                  <SearchCard data={item} key={item.videoId+Math.random()*100}/>
+                    <div className='my-5' key={item.videoId+Math.random()*100}>
+                  <SearchCard data={item} />
                   </div>
                   )
                 })}

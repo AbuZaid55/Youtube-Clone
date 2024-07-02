@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/useApp";
 import { getVideoDetails } from "../store/reducers/getVideoDetails";
 import { getRecommendedVideos } from "../store/reducers/getRecommendedVideos";
 import Navbar from "../components/Navbar";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Spinner from '../components/Spinner';
+import RecommendedCard from "../components/RecommendedCard";
 
 export default function Watch() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [videoPlaying,setVideoPlaying]=useState(false)
 
   const currentPlaying = useAppSelector(
     (state) => state.youtubeApp.currentPlaying
@@ -18,9 +22,8 @@ export default function Watch() {
     (state) => state.youtubeApp.recommendedVideo
   );
 
-  console.log(recommendedVideo)
-
   useEffect(() => {
+    setVideoPlaying(false)
     if (id) {
       dispatch(getVideoDetails(id));
     } else {
@@ -29,9 +32,9 @@ export default function Watch() {
   }, [id, navigate, dispatch]);
 
   useEffect(() => {
-    if (currentPlaying && id) dispatch(getRecommendedVideos(id));
-  }, [currentPlaying, dispatch, id]);
-  console.log(currentPlaying)
+    setVideoPlaying(false)
+    if (currentPlaying && id) dispatch(getRecommendedVideos({isNext:false,videoId:id}));
+  }, [currentPlaying, id]);
 
   return (
     <>
@@ -41,13 +44,45 @@ export default function Watch() {
             <Navbar />
           </div>
           <div className="w-full flex">
-            <div className="video-container w-[70%] h-[70vh] relative">
-              <div className="absolute bg-cover w-full h-full hidden" id="thumbnail" style={{backgroundImage: `url('${currentPlaying.videoThumbnail}')`,backgroundRepeat:"no-repeat",backgroundPosition:"center"}}></div>
-              <div className="iframe-container w-full h-full" id="iframe-container">
-                <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${id}?autoplay=1`} frameborder="0" width="800" height="502" allowfullscreen title="YouTube Player" id="youtube-iframe"></iframe>
+            <div className="w-[70%]">
+              <div className="video-container w-full h-[70vh] relative">
+                {
+                  !videoPlaying? (
+                
+                <div onClick={()=>{setVideoPlaying(true)}} className="absolute bg-cover w-full h-full cursor-pointer" id="thumbnail" style={{ backgroundImage: `url('${currentPlaying.videoThumbnail}')`, backgroundRepeat: "no-repeat", backgroundPosition: "center" }}></div>
+                  ):(
+                <div className="iframe-container w-full h-full" id="iframe-container">
+                  <iframe className="w-full h-full" src={`https://www.youtube.com/embed/${id}?autoplay=1`} frameBorder="0" width="800" height="502" allowFullScreen title="YouTube Player" id="youtube-iframe"></iframe>
+                </div>
+                  )}
               </div>
             </div>
-            <div className="min-h-[100vh] w-[30%] bg-white"></div>
+            
+                {
+                  recommendedVideo.length ? (
+                    <div className='w-[30%] h-[100vh]  flex flex-col gap-5 p-4 border-l-2 border-gray-800'>
+                      <InfiniteScroll
+                        dataLength={recommendedVideo.length}
+                        next={() => dispatch(getRecommendedVideos({isNext:false,videoId:id}))}
+                        hasMore={recommendedVideo.length < 500}
+                        loader={<Spinner />}
+                        height={660}
+                      >
+
+                        {recommendedVideo.map((item) => {
+                          return (
+                            <div className='my-5' key={item.videoId + Math.random() * 100}>
+                              <RecommendedCard data={item} />
+                            </div>
+                          )
+                        })}
+
+                      </InfiniteScroll>
+                    </div>
+                  ) : (
+                    <Spinner />
+                  )
+                }
           </div>
         </div>
       )}

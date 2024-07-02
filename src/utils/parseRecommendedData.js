@@ -12,7 +12,6 @@ try{
   const channelIds= [];
 
   items.forEach((item) =>{
-    console.log(item)
     channelIds.push(item.snippet.channelId);
     if(item.contentDetails.upload){
       videoIds.push(item.contentDetails.upload.videoId)
