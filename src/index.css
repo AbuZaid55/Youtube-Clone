@@ -20,3 +20,9 @@ body{
     background-color: #c7c7c7;
     border-radius: 1rem;
 }
+.hide-scrollbar{
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar{
+    display: none;
+}
